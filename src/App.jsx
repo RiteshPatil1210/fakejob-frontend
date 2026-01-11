@@ -1,22 +1,30 @@
 import React from "react";
-import HomePage from "./components/HomePage";
-import AnalyzePage from "./components/AnalyzePage";
-import AccuracyChart from "./AccuracyChart";
-import "./app.css";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./layouts/MainLayout";
+import HomePage from "./pages/HomePage";
+import AnalyzePage from "./pages/AnalyzePage";
+import { AnalysisProvider } from "./context/AnalysisContext";
+import WhyMattersPage from "./pages/WhyMattersPage";
+import HowItWorksPage from "./pages/HowItWorksPage";
+import HowToUsePage from "./pages/HowToUsePage";
+import AccuracyPage from "./pages/AccuracyPage";
+import "./App.css";
 
 function App() {
   return (
-    <div className="app-root">
-      <HomePage />
-
-      <div style={{ width: "80%", margin: "40px auto" }}>
-        <AccuracyChart />
-      </div>
-
-      <AnalyzePage />
-    </div>
+    <AnalysisProvider>
+      <MainLayout>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/analyze" element={<AnalyzePage />} />
+          <Route path="/why-matters" element={<WhyMattersPage />} />
+          <Route path="/how-to-use" element={<HowToUsePage />} />
+          <Route path="/how-it-works" element={<HowItWorksPage />} />
+          <Route path="/accuracy" element={<AccuracyPage />} />
+        </Routes>
+      </MainLayout>
+    </AnalysisProvider>
   );
 }
 
 export default App;
-
